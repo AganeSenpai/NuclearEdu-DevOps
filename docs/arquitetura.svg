@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="1000" viewBox="0 0 1500 1000" role="img" aria-labelledby="title desc">
+<title id="title">NuclearEdu - Arquitetura da implantacao Azure e Docker</title>
+<desc id="desc">Navegador acessa IP publico da VM; NSG permite TCP 5000; VM Ubuntu na rede virtual hospeda Docker Engine e API Flask Gunicorn. Azure CLI provisiona a VM e Azure Run Command instala Docker e implanta o codigo. Sem banco de dados.</desc>
+<defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0 1 L8 5 L0 9" fill="none" stroke="#283544" stroke-width="1.5"/></marker><marker id="blueArrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0 1 L8 5 L0 9" fill="none" stroke="#2874ae" stroke-width="1.5"/></marker></defs>
+<rect width="1500" height="1000" fill="white"/>
+<style>text{font-family:Arial,Helvetica,sans-serif;fill:#172636}.title{font-size:32px;font-weight:700}.h{font-size:20px;font-weight:700}.body{font-size:17px}.small{font-size:15px;fill:#526273}.label{font-size:18px}.num{font-size:18px;font-weight:700;fill:white}</style>
+<text x="56" y="58" class="title">NuclearEdu | Arquitetura da solução</text>
+<text x="56" y="88" class="body">Challenge AMAZUL · FIAP · DevOps Tools &amp; Cloud Computing</text>
+<text x="1440" y="58" text-anchor="end" class="small">João Vitor Valaitis Paulo</text><text x="1440" y="82" text-anchor="end" class="small">RM576724 · 2TDSPS-2026</text>
+<rect x="302" y="140" width="1140" height="596" rx="12" fill="#f5f9fd" stroke="#0078d4" stroke-width="2"/>
+<text x="332" y="178" class="h" fill="#0078d4">Microsoft Azure</text>
+<text x="332" y="205" class="small">Grupo de recursos: rg-nuclearedu-rm576724</text>
+<text x="1408" y="178" class="body" text-anchor="end">Região da VM: Mexico Central</text>
+<rect x="660" y="245" width="750" height="448" rx="8" fill="#edf2f6" stroke="#a3b5c5" stroke-width="1.5"/>
+<text x="685" y="278" class="h">Azure Virtual Network</text><text x="685" y="304" class="small">vm-nucleareduVNET · sub-rede padrão</text>
+<rect x="982" y="335" width="394" height="329" rx="8" fill="white" stroke="#6a95b5" stroke-width="2"/>
+
+<g transform="translate(70 345)"><rect x="0" y="0" width="118" height="78" rx="5" fill="#e1f4fd" stroke="#008ac6" stroke-width="3"/><path d="M0 18 H118 M12 9 h3 M22 9 h3 M32 9 h3 M59 79 v17 M36 98 h46" stroke="#008ac6" stroke-width="3"/><path d="M40 41 l-12 10 12 10 M78 41 l12 10-12 10 M64 34 l-10 34" stroke="#008ac6" stroke-width="3" fill="none"/></g>
+<text x="129" y="463" class="h" text-anchor="middle">Cliente HTTP</text>
+<text x="129" y="491" class="body" text-anchor="middle">Navegador / curl</text>
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" id="10069_b90f7485-edb8-49cc-9118-bc054cf5c18e" width="72" height="72" viewBox="0 0 18 18" x="421" y="350"><ns0:defs><ns0:linearGradient id="10069_ad52e31e-75de-46af-9bdc-bea038ab4209" x1="9" y1="15.83" x2="9" y2="5.79" gradientUnits="userSpaceOnUse"><ns0:stop offset="0" stop-color="#32bedd" /><ns0:stop offset="0.18" stop-color="#32caea" /><ns0:stop offset="0.41" stop-color="#32d2f2" /><ns0:stop offset="0.78" stop-color="#32d4f5" /></ns0:linearGradient></ns0:defs><ns0:title>Icon-networking-69</ns0:title><ns0:path d="M.5,5.79h17a0,0,0,0,1,0,0v9.48a.57.57,0,0,1-.57.57H1.07a.57.57,0,0,1-.57-.57V5.79A0,0,0,0,1,.5,5.79Z" fill="url(#10069_ad52e31e-75de-46af-9bdc-bea038ab4209)" /><ns0:path d="M1.07,2.17H16.93a.57.57,0,0,1,.57.57V5.79a0,0,0,0,1,0,0H.5a0,0,0,0,1,0,0V2.73A.57.57,0,0,1,1.07,2.17Z" fill="#767676" /><ns0:circle cx="12.82" cy="10.19" r="1.38" fill="#f2f2f2" /><ns0:circle cx="9.06" cy="10.19" r="1.38" fill="#f2f2f2" /><ns0:circle cx="5.18" cy="10.19" r="1.38" fill="#f2f2f2" /><ns0:rect x="2.79" y="3.25" width="12.43" height="1.46" rx="0.28" fill="#f2f2f2" /></ns0:svg>
+<text x="457" y="463" class="h" text-anchor="middle">Azure Public IP</text>
+<text x="457" y="491" class="body" text-anchor="middle">158.23.22.150</text>
+<text x="457" y="518" class="small" text-anchor="middle">HTTP · porta 5000</text>
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" id="10067_b75943ba-1a3f-485d-b45d-3fee00ed7e5e" width="72" height="72" viewBox="0 0 18 18" x="739" y="350"><ns0:defs><ns0:linearGradient id="10067_fe5ce43f-2823-4617-bb54-57df9e778372" x1="9.01" y1="0.75" x2="9.01" y2="17.25" gradientUnits="userSpaceOnUse"><ns0:stop offset="0" stop-color="#5ea0ef" /><ns0:stop offset="0.18" stop-color="#559cec" /><ns0:stop offset="0.47" stop-color="#3c91e5" /><ns0:stop offset="0.84" stop-color="#1380da" /><ns0:stop offset="1" stop-color="#0078d4" /></ns0:linearGradient></ns0:defs><ns0:title>Icon-networking-67</ns0:title><ns0:path d="M16.36,8.4c0,4.84-5.85,8.74-7.12,9.53a.46.46,0,0,1-.48,0c-1.27-.79-7.12-4.69-7.12-9.53V2.58a.46.46,0,0,1,.45-.46C6.64,2,5.59,0,9,0s2.36,2,6.91,2.12a.46.46,0,0,1,.45.46Z" fill="#0078d4" /><ns0:path d="M15.75,8.45c0,4.44-5.36,8-6.53,8.74a.43.43,0,0,1-.44,0c-1.17-.72-6.53-4.3-6.53-8.74V3.11a.42.42,0,0,1,.41-.42C6.83,2.58,5.87.75,9,.75s2.17,1.83,6.34,1.94a.42.42,0,0,1,.41.42Z" fill="#6bb9f2" /><ns0:path d="M9,9V.75c3.13,0,2.17,1.83,6.34,1.94a.43.43,0,0,1,.41.43V8.46a4.89,4.89,0,0,1,0,.54ZM9,9H2.28c.4,4.18,5.38,7.5,6.5,8.19a.39.39,0,0,0,.18.06H9Z" fill="url(#10067_fe5ce43f-2823-4617-bb54-57df9e778372)" /><ns0:path d="M2.66,2.69C6.83,2.58,5.87.75,9,.75V9H2.28a4.89,4.89,0,0,1,0-.54V3.12A.43.43,0,0,1,2.66,2.69Z" fill="#50e6ff" /><ns0:path d="M15.72,9H9v8.25H9a.39.39,0,0,0,.18-.06C10.34,16.5,15.32,13.18,15.72,9Z" fill="#50e6ff" /></ns0:svg>
+<text x="775" y="463" class="h" text-anchor="middle">Network Security Group</text>
+<text x="775" y="491" class="body" text-anchor="middle">vm-nucleareduNSG</text>
+<text x="775" y="518" class="small" text-anchor="middle">Entrada: TCP 5000 / Internet</text>
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" id="10021_fd454f1c-5506-44b8-874e-8814b8b2f70b" width="58" height="58" viewBox="0 0 18 18" x="1004" y="350"><ns0:defs><ns0:linearGradient id="10021_f34d9569-2bd0-4002-8f16-3d01d8106cb5" x1="8.88" y1="12.21" x2="8.88" y2="0.21" gradientUnits="userSpaceOnUse"><ns0:stop offset="0" stop-color="#0078d4" /><ns0:stop offset="0.82" stop-color="#5ea0ef" /></ns0:linearGradient><ns0:linearGradient id="10021_bdb45a0b-eb58-4970-a60a-fb2ce314f866" x1="8.88" y1="16.84" x2="8.88" y2="12.21" gradientUnits="userSpaceOnUse"><ns0:stop offset="0.15" stop-color="#ccc" /><ns0:stop offset="1" stop-color="#707070" /></ns0:linearGradient></ns0:defs><ns0:title>Icon-compute-21</ns0:title><ns0:rect x="-0.12" y="0.21" width="18" height="12" rx="0.6" fill="url(#10021_f34d9569-2bd0-4002-8f16-3d01d8106cb5)" /><ns0:polygon points="11.88 4.46 11.88 7.95 8.88 9.71 8.88 6.21 11.88 4.46" fill="#50e6ff" /><ns0:polygon points="11.88 4.46 8.88 6.22 5.88 4.46 8.88 2.71 11.88 4.46" fill="#c3f1ff" /><ns0:polygon points="8.88 6.22 8.88 9.71 5.88 7.95 5.88 4.46 8.88 6.22" fill="#9cebff" /><ns0:polygon points="5.88 7.95 8.88 6.21 8.88 9.71 5.88 7.95" fill="#c3f1ff" /><ns0:polygon points="11.88 7.95 8.88 6.21 8.88 9.71 11.88 7.95" fill="#9cebff" /><ns0:path d="M12.49,15.84c-1.78-.28-1.85-1.56-1.85-3.63H7.11c0,2.07-.06,3.35-1.84,3.63a1,1,0,0,0-.89,1h9A1,1,0,0,0,12.49,15.84Z" fill="url(#10021_bdb45a0b-eb58-4970-a60a-fb2ce314f866)" /></ns0:svg>
+<text x="1080" y="371" class="h" text-anchor="start">Azure Virtual Machine</text>
+<text x="1080" y="398" class="body" text-anchor="start">vm-nuclearedu</text>
+<text x="1179" y="432" class="small" text-anchor="middle">Ubuntu 22.04 LTS · Standard_B2ats_v2</text>
+<path d="M197 386 H400" fill="none" stroke="#283544" stroke-width="2.5" marker-end="url(#arrow)"/>
+<circle cx="288" cy="386" r="18" fill="#107c10"/><text x="288" y="392" text-anchor="middle" class="num">1</text>
+<text x="288" y="350" class="small" text-anchor="middle">Requisição HTTP</text>
+<path d="M502 386 H720" fill="none" stroke="#283544" stroke-width="2.5" marker-end="url(#arrow)"/>
+<circle cx="610" cy="386" r="18" fill="#107c10"/><text x="610" y="392" text-anchor="middle" class="num">2</text>
+<text x="610" y="350" class="small" text-anchor="middle">Acesso à VM</text>
+<path d="M820 386 H970" fill="none" stroke="#283544" stroke-width="2.5" marker-end="url(#arrow)"/>
+<circle cx="897" cy="386" r="18" fill="#107c10"/><text x="897" y="392" text-anchor="middle" class="num">3</text>
+<text x="897" y="350" class="small" text-anchor="middle">Filtro NSG</text>
+<rect x="1005" y="455" width="348" height="184" rx="7" fill="#e6f5fc" stroke="#2496ed" stroke-width="2"/>
+<g transform="translate(1023 472)" fill="#2496ed"><rect x="0" y="12" width="10" height="9"/><rect x="12" y="12" width="10" height="9"/><rect x="24" y="12" width="10" height="9"/><rect x="12" y="1" width="10" height="9"/><rect x="24" y="1" width="10" height="9"/><path d="M-3 24 H40 q8 0 11-9 l8 5-8 7 q-8 22-32 18 Q-1 44-3 24"/></g>
+<text x="1100" y="491" class="h">Docker Engine</text><text x="1100" y="517" class="small">5000 (VM) → 5000 (container)</text>
+<rect x="1024" y="537" width="310" height="81" rx="5" fill="white" stroke="#75b8df"/>
+<text x="1040" y="566" class="h" fill="#0078d4">&lt;/&gt;</text><text x="1090" y="565" class="h">API NuclearEdu</text><text x="1090" y="590" class="small">Flask + Gunicorn · Python 3.12</text>
+
+<text x="775" y="593" class="small" text-anchor="middle">A regra é aplicada ao acesso</text>
+<text x="775" y="617" class="small" text-anchor="middle">à interface de rede da VM.</text>
+<rect x="302" y="778" width="1140" height="145" rx="8" fill="#fafafa" stroke="#d3dbe2"/>
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" width="58" height="58" viewBox="0 0 18 18" x="332" y="807"><ns0:defs><ns0:linearGradient id="00559_ba88ea91-3b3a-4da0-9b97-9a10ebaa3e50" x1="12.805" y1="15.237" x2="12.805" y2="7.962" gradientUnits="userSpaceOnUse"><ns0:stop offset="0" stop-color="#0078d4" /><ns0:stop offset=".156" stop-color="#1380da" /><ns0:stop offset=".528" stop-color="#3c91e5" /><ns0:stop offset=".822" stop-color="#559cec" /><ns0:stop offset="1" stop-color="#5ea0ef" /></ns0:linearGradient></ns0:defs><ns0:path d="M15.6 5.7H.067V2.99a.226.226 0 0 1 .226-.226H15.37a.227.227 0 0 1 .227.226z" fill="#949494" /><ns0:path d="M.063 5.7h15.53a0 0 0 0 1 0 0v9.254a.231.231 0 0 1-.231.231H.294a.231.231 0 0 1-.231-.231V5.7a0 0 0 0 1 0 0z" fill="#bfbfbf" /><ns0:path fill="#005ba1" d="M1.135 6.5h13.37v7.57H1.135z" /><ns0:g fill="#fff"><ns0:rect x="4.576" y="10.738" width="2.837" height=".527" rx=".263" /><ns0:path d="M2.675 11.215L4.35 9.54a.169.169 0 0 0 0-.243l-1.7-1.633a.17.17 0 0 0-.244.01L2.28 7.8a.17.17 0 0 0 .01.236L3.623 9.3a.171.171 0 0 1 0 .242l-1.3 1.333a.171.171 0 0 0 0 .239l.1.1a.17.17 0 0 0 .252.001z" /></ns0:g><ns0:path d="M17.937 12.958a2.3 2.3 0 0 0-2-2.216 2.906 2.906 0 0 0-2.994-2.78A2.982 2.982 0 0 0 10.092 9.9a2.752 2.752 0 0 0-2.42 2.648 2.793 2.793 0 0 0 2.89 2.684l.255-.01H15.5a.465.465 0 0 0 .124-.019 2.333 2.333 0 0 0 2.313-2.244z" fill="url(#00559_ba88ea91-3b3a-4da0-9b97-9a10ebaa3e50)" /></ns0:svg>
+<text x="410" y="824" class="h" text-anchor="start">Azure Cloud Shell / Azure CLI</text>
+<text x="410" y="850" class="body" text-anchor="start">az vm create · Azure Run Command</text>
+<text x="410" y="880" class="small" text-anchor="start">Provisionamento, instalação do Docker e implantação do código</text>
+<path d="M1228 778 V703" fill="none" stroke="#2874ae" stroke-width="2.5" marker-end="url(#blueArrow)" stroke-dasharray="8 6"/>
+<text x="1212" y="763" class="small" text-anchor="end">Plano de administração</text>
+<text x="332" y="961" class="body" text-anchor="start">Sem banco de dados: tópicos definidos no código da API. Respostas em JSON pelo mesmo caminho.</text>
+<text x="56" y="987" class="small" text-anchor="start">Ícones Azure: Microsoft Azure Architecture Center. Docker e cliente: representação vetorial.</text>
+</svg>
