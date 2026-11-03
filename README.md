@@ -1,76 +1,54 @@
-# NuclearEdu DevOps — Challenge AMAZUL / FIAP
+# NuclearEdu DevOps
 
-**Aluno:** JOÃO VITOR VALAITIS PAULO — RM576724  
+**Aluno:** João Vitor Valaitis Paulo  
+**RM:** 576724  
+**Turma:** 2TDSPS-2026  
 **Disciplina:** DevOps Tools & Cloud Computing — Sprint 1  
-**Empresa parceira do Challenge:** AMAZUL — Amazônia Azul Tecnologias de Defesa S.A.
+**Challenge:** AMAZUL
 
-**Repositório:** https://github.com/AganeSenpai/NuclearEdu-DevOps
+## Solução
 
-## Proposta
-Prova de conceito independente de API educativa sobre aplicações da tecnologia nuclear. Demonstra Docker e implantação em máquina virtual Linux na Microsoft Azure, sem depender de projetos Java ou Mobile.
+API educativa sobre aplicações da tecnologia nuclear, desenvolvida com Flask e Gunicorn e executada em um container Docker em uma VM Ubuntu na Microsoft Azure. Não utiliza banco de dados.
 
 ## Arquitetura
-Navegador/cliente HTTP → IP público da VM Ubuntu no Azure (porta TCP 5000) → container Docker (porta 5000) → API Flask/Gunicorn. Não utiliza banco de dados. Consulte `docs/arquitetura.svg`.
 
-## Requisitos
-Conta e assinatura Azure com permissão para criar recursos; Azure CLI autenticada (`az login`); chave SSH; acesso à VM; Docker instalado na VM; Git e acesso ao repositório.
+![Arquitetura da solução](docs/arquitetura.svg)
 
-## 1. Provisionar Azure via CLI
-Em um terminal Bash com Azure CLI:
+O cliente acessa o IP público da VM pela porta TCP 5000, liberada no Network Security Group (NSG). O Docker encaminha a requisição para a API na porta 5000 do container.
+
+## Execução
+
+No Azure Cloud Shell, selecione Bash e execute:
+
 ```bash
+git clone https://github.com/AganeSenpai/NuclearEdu-DevOps.git
+cd NuclearEdu-DevOps
 bash scripts/azure-criar.sh
-```
-Registre capturas da criação da VM, IP público e grupo de recursos. A VM poderá gerar custos; confira limites de cota e disponibilidade de `Standard_B2ats_v2` em `mexicocentral`.
-
-## 2. Instalar Docker e implantar a API
-
-A partir da raiz do projeto no Cloud Shell:
-
-```bash
 bash scripts/azure-implantar.sh
-```
-
-O script usa Azure Run Command para instalar Docker, enviar o codigo, construir a imagem e iniciar o container na VM. Nao requer abrir SSH ao publico.
-
-## 3. Publicar a API
-
-```bash
 bash scripts/azure-publicar.sh
 ```
 
-Confirme PUBLICAR para abrir apenas TCP 5000. Consulte COMO-EXECUTAR-AUTOMATICO.md.
+O provisionamento usa Ubuntu 22.04 LTS, tamanho `Standard_B2ats_v2`, região `mexicocentral` e disco Standard HDD de 30 GB. Os comandos Azure CLI estão em [azure-criar.sh](scripts/azure-criar.sh). A implantação instala o Docker, constrói a imagem e inicia o container na VM usando Azure Run Command. Confirme `PUBLICAR` para liberar a porta 5000.
 
-## 4. Validar externamente
-Em outro computador ou no navegador local, acesse:
-- `http://IP_PUBLICO:5000/`
-- `http://IP_PUBLICO:5000/health`
-- `http://IP_PUBLICO:5000/api/topicos`
-- `http://IP_PUBLICO:5000/api/topicos/1`
+A construção e a execução realizadas pelo script na VM são:
 
-Documente evidências com o IP público da VM e o resultado da API. A porta 5000 e aberta pelo script de publicacao no NSG; não exponha a API por mais tempo que o necessário.
-
-## 5. Apagar recursos (obrigatório)
-Depois de registrar o vídeo e as capturas:
 ```bash
-bash scripts/azure-excluir.sh
+docker build -t nuclearedu-api:1.0 .
+docker run -d --name nuclearedu-api --restart unless-stopped -p 5000:5000 nuclearedu-api:1.0
 ```
-Capture a saída que comprova a exclusão. O comando espera a exclusão terminar e `az group exists` deve retornar `false`.
 
-## Como Docker e Cloud Computing são utilizados?
-Docker empacota a API e suas dependências numa imagem reproduzível, reduzindo diferenças entre ambientes. A Azure disponibiliza a VM Linux que hospeda o container e permite acesso externo ao protótipo por IP público. Nesta prova de conceito, a VM é provisionada por Azure CLI e removida ao final para evitar custos desnecessários.
+## Teste
 
-## Entrega
-- Repositório GitHub acessível ao professor com README, Dockerfile, scripts e diagrama.
-- Vídeo YouTube não listado, aproximadamente 3 minutos, mínimo 720p, com áudio ou legendas e demonstração real da VM, container, API e exclusão.
-- PDF final com nome, RM, turma, link GitHub e link YouTube.
-- Capturas em `evidencias/` (adicionar após execução real).
+Obtenha o IP público e teste a API:
 
-**Nota:** os scripts são fornecidos, mas a criação da VM e os testes reais dependem de executar em sua conta Azure. Não declare que os recursos foram provisionados antes da execução.
+```bash
+az vm show -d -g rg-nuclearedu-rm576724 -n vm-nuclearedu --query publicIps -o tsv
+curl http://IP_PUBLICO:5000/health
+curl http://IP_PUBLICO:5000/api/topicos
+```
 
-## Implantacao em um comando
+Substitua `IP_PUBLICO` pelo endereço retornado. A rota `/health` deve retornar `{"status":"ok"}`. As capturas da implantação estão em [evidencias/](evidencias/).
 
-Consulte [COMO-EXECUTAR-AUTOMATICO.md](COMO-EXECUTAR-AUTOMATICO.md) e execute `bash scripts/azure-automatico.sh` a partir da raiz do projeto.
+## Uso de Docker e Cloud Computing
 
-## Execucao real verificada em 03/11/2026
-
-VM vm-nuclearedu, Mexico Central, Standard_B2ats_v2, Ubuntu 22.04 LTS. API implantada em Docker e testada interna e externamente: http://158.23.22.150:5000/health e http://158.23.22.150:5000/api/topicos. As capturas estao em evidencias/. O endereco so funciona enquanto os recursos estiverem ativos. A exclusao ainda nao foi realizada para permitir a gravacao do video.
+Docker empacota a API e suas dependências em uma imagem reproduzível. Cloud Computing fornece a VM Ubuntu e os recursos de rede na Azure para executar o container e disponibilizar a aplicação pela internet.
