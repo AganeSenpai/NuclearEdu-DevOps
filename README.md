@@ -47,7 +47,7 @@ curl http://IP_PUBLICO:5000/health
 curl http://IP_PUBLICO:5000/api/topicos
 ```
 
-Substitua `IP_PUBLICO` pelo endereço retornado. A rota `/health` deve retornar `{"status":"ok"}`. As capturas da implantação estão em [evidencias/](evidencias/).
+Substitua `IP_PUBLICO` pelo endereço retornado. A rota `/health` deve retornar `{"status":"ok"}`.
 
 ## Uso de Docker e Cloud Computing
 
