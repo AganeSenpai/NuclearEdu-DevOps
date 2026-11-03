@@ -12,7 +12,7 @@ API educativa sobre aplicações da tecnologia nuclear, desenvolvida com Flask e
 
 ## Arquitetura
 
-![Arquitetura da solução](docs/arquitetura.svg)
+[Ver diagrama da arquitetura](docs/arquitetura.svg)
 
 O cliente acessa o IP público da VM pela porta TCP 5000, liberada no Network Security Group (NSG). O Docker encaminha a requisição para a API na porta 5000 do container.
 
